@@ -1,0 +1,41 @@
+name: omniASR_tokenizer_written_v2
+tokenizer_family: char_tokenizer
+tokenizer: https://dl.fbaipublicfiles.com/mms/omniASR_tokenizer_written_v2.model
+
+---
+
+name: omniASR_CTC_1B_v2
+model_family: wav2vec2_asr
+model_arch: 1b
+model_config:
+  target_vocab_size: 10288
+checkpoint: https://dl.fbaipublicfiles.com/mms/omniASR-CTC-1B-v2.pt
+tokenizer_ref: omniASR_tokenizer_written_v2
+
+---
+
+name: afrivoices_ckpt4500
+model_family: wav2vec2_asr
+model_arch: 1b
+model_config:
+  target_vocab_size: 10288
+checkpoint: "file:///scratch/ckpt/best_ckpt/pp_00/tp_00/sdp_00.pt"
+tokenizer_ref: omniASR_tokenizer_written_v2
+
+---
+
+name: afrivoices
+dataset_family: mixture_parquet_asr_dataset
+dataset_config:
+  data: /scratch/data/mixE/version=0
+tokenizer_ref: omniASR_tokenizer_written_v2
+
+---
+
+name: runb_12750
+model_family: wav2vec2_asr
+model_arch: 1b
+model_config:
+  target_vocab_size: 10288
+checkpoint: "file:///scratch/runB_out/ws_1.4432425d/checkpoints/step_12750/model/pp_00/tp_00/sdp_00.pt"
+tokenizer_ref: omniASR_tokenizer_written_v2

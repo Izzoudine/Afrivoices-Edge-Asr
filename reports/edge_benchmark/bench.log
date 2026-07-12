@@ -1,0 +1,72 @@
+Running as unit: run-r2816bd549e2e48769d8593a8f77740de.scope; invocation ID: d44fc7b496ba4a6595048b6c54547766
+chargement modele: 3.5s
+Unigrams and labels don't seem to agree.
+Unigrams and labels don't seem to agree.
+chargement 6 LM+lexiques: 17.7s
+kik_00.wav dur=29.8s acoustique=17.5s decodage=0.4s RTF=0.60
+kik_01.wav dur=32.1s acoustique=19.4s decodage=0.5s RTF=0.62
+kik_02.wav dur=28.1s acoustique=16.6s decodage=0.3s RTF=0.60
+kik_03.wav dur=21.4s acoustique=11.7s decodage=0.3s RTF=0.56
+kik_04.wav dur=34.6s acoustique=21.2s decodage=0.7s RTF=0.63
+kik_05.wav dur=26.7s acoustique=15.1s decodage=0.5s RTF=0.59
+kik_06.wav dur=32.6s acoustique=19.5s decodage=0.4s RTF=0.61
+kik_07.wav dur=29.4s acoustique=17.0s decodage=0.4s RTF=0.59
+kik_08.wav dur=30.0s acoustique=17.6s decodage=0.5s RTF=0.60
+kik_09.wav dur=32.7s acoustique=19.7s decodage=0.5s RTF=0.62
+kln_00.wav dur=19.7s acoustique=10.4s decodage=0.5s RTF=0.56
+kln_01.wav dur=15.9s acoustique=8.3s decodage=0.4s RTF=0.54
+kln_02.wav dur=15.9s acoustique=8.1s decodage=0.4s RTF=0.54
+kln_03.wav dur=16.1s acoustique=8.2s decodage=0.3s RTF=0.53
+kln_04.wav dur=17.5s acoustique=9.2s decodage=0.6s RTF=0.56
+kln_05.wav dur=21.4s acoustique=11.7s decodage=0.6s RTF=0.57
+kln_06.wav dur=18.4s acoustique=9.6s decodage=0.6s RTF=0.55
+kln_07.wav dur=19.9s acoustique=10.7s decodage=0.7s RTF=0.57
+kln_08.wav dur=22.2s acoustique=12.2s decodage=0.7s RTF=0.58
+kln_09.wav dur=19.8s acoustique=10.6s decodage=0.5s RTF=0.56
+luo_00.wav dur=34.9s acoustique=21.3s decodage=0.3s RTF=0.62
+luo_01.wav dur=24.7s acoustique=13.8s decodage=0.2s RTF=0.57
+luo_02.wav dur=28.8s acoustique=16.5s decodage=0.3s RTF=0.58
+luo_03.wav dur=34.6s acoustique=21.5s decodage=0.3s RTF=0.63
+luo_04.wav dur=24.2s acoustique=13.7s decodage=0.3s RTF=0.58
+luo_05.wav dur=33.1s acoustique=20.0s decodage=0.3s RTF=0.61
+luo_06.wav dur=29.1s acoustique=17.0s decodage=0.2s RTF=0.59
+luo_07.wav dur=34.6s acoustique=21.4s decodage=0.3s RTF=0.63
+luo_08.wav dur=30.3s acoustique=17.8s decodage=0.3s RTF=0.60
+luo_09.wav dur=31.4s acoustique=18.2s decodage=0.3s RTF=0.59
+mas_00.wav dur=9.0s acoustique=4.2s decodage=0.1s RTF=0.48
+mas_01.wav dur=13.3s acoustique=6.8s decodage=0.4s RTF=0.54
+mas_02.wav dur=7.8s acoustique=3.6s decodage=0.1s RTF=0.48
+mas_03.wav dur=5.7s acoustique=2.5s decodage=0.0s RTF=0.45
+mas_04.wav dur=9.1s acoustique=4.2s decodage=0.1s RTF=0.47
+mas_05.wav dur=5.2s acoustique=2.3s decodage=0.1s RTF=0.45
+mas_06.wav dur=3.7s acoustique=1.6s decodage=0.1s RTF=0.45
+mas_07.wav dur=6.3s acoustique=2.8s decodage=0.1s RTF=0.45
+mas_08.wav dur=6.5s acoustique=2.9s decodage=0.1s RTF=0.46
+mas_09.wav dur=5.4s acoustique=2.4s decodage=0.1s RTF=0.46
+som_00.wav dur=17.9s acoustique=9.3s decodage=0.6s RTF=0.56
+som_01.wav dur=33.0s acoustique=19.9s decodage=1.0s RTF=0.63
+som_02.wav dur=32.1s acoustique=19.1s decodage=1.2s RTF=0.63
+som_03.wav dur=33.6s acoustique=20.2s decodage=1.1s RTF=0.63
+som_04.wav dur=17.1s acoustique=8.8s decodage=0.6s RTF=0.55
+som_05.wav dur=16.9s acoustique=8.7s decodage=0.6s RTF=0.55
+som_06.wav dur=24.8s acoustique=14.1s decodage=0.8s RTF=0.60
+som_07.wav dur=26.7s acoustique=15.1s decodage=1.0s RTF=0.60
+som_08.wav dur=28.2s acoustique=16.1s decodage=1.1s RTF=0.61
+som_09.wav dur=25.7s acoustique=14.8s decodage=1.0s RTF=0.61
+swa_00.wav dur=18.2s acoustique=9.5s decodage=0.1s RTF=0.53
+swa_01.wav dur=18.7s acoustique=10.0s decodage=0.2s RTF=0.54
+swa_02.wav dur=17.3s acoustique=9.0s decodage=0.4s RTF=0.54
+swa_03.wav dur=19.4s acoustique=10.2s decodage=0.2s RTF=0.53
+swa_04.wav dur=19.0s acoustique=10.0s decodage=0.2s RTF=0.54
+swa_05.wav dur=17.3s acoustique=9.0s decodage=0.2s RTF=0.53
+swa_06.wav dur=20.0s acoustique=10.7s decodage=0.2s RTF=0.54
+swa_07.wav dur=17.4s acoustique=8.9s decodage=0.3s RTF=0.53
+swa_08.wav dur=18.4s acoustique=9.6s decodage=0.3s RTF=0.54
+swa_09.wav dur=17.1s acoustique=8.9s decodage=0.2s RTF=0.53
+
+===== BILAN (4 threads ARM, beam 100) =====
+audio total: 1301s | temps total: 755s | RTF GLOBAL: 0.581
+RTF median: 0.562 | p95: 0.632 | max: 0.633
+RAM pic: 5.80 Go
+extrapolation test complet (~250h audio): 145h de calcul
+BENCH_DONE

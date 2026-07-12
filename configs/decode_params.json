@@ -1,0 +1,50 @@
+{
+ "swh": {
+  "lm": "/scratch/lm_final_pure/swh_B_4gram.bin",
+  "alpha": 0.35,
+  "beta": 0.8,
+  "unigrams": "/scratch/lm_final_pure/swh_unigrams.txt",
+  "beam": 100,
+  "prune": -10.0
+ },
+ "kik": {
+  "lm": "/scratch/lm_final_pure/kik_B_3gram.bin",
+  "alpha": 0.5,
+  "beta": 1.5,
+  "unigrams": "/scratch/lm_final_pure/kik_unigrams.txt",
+  "beam": 100,
+  "prune": -10.0
+ },
+ "luo": {
+  "lm": "/scratch/lm_final_pure/luo_B_3gram.bin",
+  "alpha": 0.5,
+  "beta": 0.0,
+  "unigrams": "/scratch/lm_final_pure/luo_unigrams.txt",
+  "beam": 100,
+  "prune": -10.0
+ },
+ "som": {
+  "lm": "/scratch/lm_final_pure/som_A_4gram.bin",
+  "alpha": 0.2,
+  "beta": 0.0,
+  "unigrams": "/scratch/lm_final_pure/som_unigrams.txt",
+  "beam": 100,
+  "prune": -10.0
+ },
+ "kln": {
+  "lm": "/scratch/lm_final_pure/kln_MIXK3_4gram.bin",
+  "alpha": 0.6,
+  "beta": 0.5,
+  "unigrams": "/scratch/lm_final_pure/kln_unigrams.txt",
+  "beam": 100,
+  "prune": -10.0
+ },
+ "mas": {
+  "lm": "/scratch/lm_final_pure/mas_A_3gram.bin",
+  "alpha": 0.35,
+  "beta": 0.8,
+  "unigrams": "/scratch/lm_final_pure/mas_unigrams.txt",
+  "beam": 100,
+  "prune": -10.0
+ }
+}
