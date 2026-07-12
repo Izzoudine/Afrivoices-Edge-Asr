@@ -43,7 +43,7 @@ Full methodology and raw measurements: [`reports/hardware_validation.md`](report
 
 The trained checkpoint, the int8 ONNX export, and the six purified KenLM language models are hosted on Hugging Face (too large for GitHub):
 
-**➡️ [huggingface.co/Izzoudine/afrivoices-edge-asr](https://huggingface.co/Izzoudine/afrivoices-edge-asr)**
+**➡️ [huggingface.co/Kimyayd/afrivoices-edge-asr](https://huggingface.co/Kimyayd/afrivoices-edge-asr)**
 
 ## Reproduce a submission
 
