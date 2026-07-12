@@ -1,0 +1,44 @@
+common:
+  seed: 2026
+model:
+  name: omniASR_CTC_1B_v2
+  family: wav2vec2_asr
+dataset:
+  name: afrivoices
+  family: mixture_parquet_asr_dataset
+  storage_mode: MIXTURE_PARQUET
+  train_split: train
+  valid_split: dev
+  mixture_parquet_storage_config:
+    dataset_summary_path: /scratch/data/mixC/summary_v2.tsv
+    sampling_seed: 2026
+    beta_corpus: 1.0
+    beta_language: 1.0
+    fragment_streaming:
+      parquet_path: /scratch/data/mixC/version=0
+  asr_task_config:
+    max_audio_len: 640000
+    max_num_elements: 1280000
+    example_shuffle_window: 5000
+    spec_aug_p: 0.5
+    spec_aug_freq_mask_param: 27
+    spec_aug_time_mask_param: 70
+tokenizer:
+  name: omniASR_tokenizer_written_v2
+trainer:
+  grad_accumulation:
+    num_batches: 32
+  max_grad_norm: 1000
+  freeze_encoder_for_n_steps: 400
+optimizer:
+  config:
+    lr: 1.0e-05
+regime:
+  num_steps: 14000
+  validate_at_start: true
+  validate_after_n_steps: 0
+  validate_every_n_steps: 250
+  checkpoint_after_n_steps: 0
+  checkpoint_every_n_steps: 250
+  keep_last_n_checkpoints: 8
+  publish_metrics_every_n_steps: 25

@@ -56,7 +56,7 @@ MODE=test OUT=submission.csv \
 python3 code/omni_kenlm_v3.py       # reads configs/decode_params.json
 ```
 
-Training recipe: [`configs/runB.yaml`](configs/) — warm-started from omniASR-CTC-1B v2, 14,000 steps, LR 1e-5 tri-stage, seed 2026, on the deduplicated 6-language mix. See [`TECHNICAL_REPORT.md`](TECHNICAL_REPORT.md) for the full pipeline.
+Training recipe: [`TRAINING.md`](TRAINING.md) + [`configs/runB.yaml`](configs/runB.yaml). Fine-tuned from omniASR-CTC-1B v2, 14,000 steps, LR 1e-5 tri-stage, seed 2026.
 
 ## Repository layout
 
