@@ -1,3 +1,9 @@
+# fairseq2 asset cards. Point FAIRSEQ2_ASSET_DIR at this directory.
+#
+# The base model and tokenizer download automatically from Meta's public URLs
+# (fully reproducible). The dataset and fine-tuned-checkpoint entries use LOCAL
+# paths — edit the two lines marked "EDIT:" to match your machine.
+
 name: omniASR_tokenizer_written_v2
 tokenizer_family: char_tokenizer
 tokenizer: https://dl.fbaipublicfiles.com/mms/omniASR_tokenizer_written_v2.model
@@ -14,20 +20,11 @@ tokenizer_ref: omniASR_tokenizer_written_v2
 
 ---
 
-name: afrivoices_ckpt4500
-model_family: wav2vec2_asr
-model_arch: 1b
-model_config:
-  target_vocab_size: 10288
-checkpoint: "file:///scratch/ckpt/best_ckpt/pp_00/tp_00/sdp_00.pt"
-tokenizer_ref: omniASR_tokenizer_written_v2
-
----
-
 name: afrivoices
 dataset_family: mixture_parquet_asr_dataset
 dataset_config:
-  data: /scratch/data/mixE/version=0
+  # EDIT: path to your assembled training mix (see code/prep_shard.py + TRAINING.md)
+  data: ./data/mix/version=0
 tokenizer_ref: omniASR_tokenizer_written_v2
 
 ---
@@ -37,5 +34,6 @@ model_family: wav2vec2_asr
 model_arch: 1b
 model_config:
   target_vocab_size: 10288
-checkpoint: "file:///scratch/runB_out/ws_1.4432425d/checkpoints/step_12750/model/pp_00/tp_00/sdp_00.pt"
+  # EDIT: download from https://huggingface.co/Kimyayd/afrivoices-edge-asr (checkpoint_step12750/)
+checkpoint: "file://./checkpoint_step12750/model/pp_00/tp_00/sdp_00.pt"
 tokenizer_ref: omniASR_tokenizer_written_v2

@@ -2,6 +2,22 @@
 
 The winning acoustic model was **fine-tuned, not trained from scratch, and not trained in a notebook.** It uses the fairseq2 wav2vec2/ASR recipe from Meta's [omnilingual-asr](https://github.com/facebookresearch/omnilingual-asr) package (Apache-2.0), driven entirely by a YAML config — so the "training script" is the config plus a one-line launch command.
 
+## 0. Environment
+
+```bash
+# GPU box, CUDA 12.x. Install order matters (fairseq2 pins numpy~=1.23).
+pip install torch==2.8.0 --index-url https://download.pytorch.org/whl/cu128
+pip install fairseq2==0.6.* --extra-index-url \
+    https://fair.pkg.atmeta.com/fairseq2/whl/pt2.8.0/cu128
+pip install --no-deps git+https://github.com/facebookresearch/omnilingual-asr@0.1.0
+pip install pyctcdecode kenlm jiwer soundfile librosa pyarrow "numpy<2"
+# On notebook environments (Colab), restart the runtime after this.
+```
+
+Inference/decoding additionally needs the packages above; the edge runtime needs only `onnxruntime` + `pyctcdecode` + `kenlm` (see the hardware validation report).
+
+> **Note on paths.** `configs/runB.yaml` and `configs/omni_v2.yaml` contain absolute paths from our training machine (`/scratch/...`) and two `EDIT:`-marked lines. Point them at your own data directory and at the checkpoint downloaded from Hugging Face before launching.
+
 ## 1. Base model
 
 [omniASR-CTC-1B v2](https://github.com/facebookresearch/omnilingual-asr) (Meta, Apache-2.0) — 971 M parameters, character-level CTC, vocab 10,288. Pulled via the asset card in [`configs/omni_v2.yaml`](configs/omni_v2.yaml).
