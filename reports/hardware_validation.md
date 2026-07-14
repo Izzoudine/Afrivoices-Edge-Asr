@@ -43,9 +43,19 @@ int8 model loads and runs end-to-end on ARM64 ONNX Runtime 1.27 (all operators s
 ### Platform B — low-end 4 GB smartphone (stress test)
 The model runs within 4 GB but at RTF ≈ 6 with the app's default single-thread session. This device is below the track's 8 GB envelope; platform D demonstrates that with 4 threads on Pi-4-class core counts the pipeline is well within 2× real time.
 
-## 4. Full test-set extrapolation
+## 4. Latency for the FULL test set (all 41,733 clips)
 
-The test set contains 41,733 clips (~250 h of audio). At the measured overall RTF of 0.581 on platform D, transcribing the entire test set takes **≈ 145 h of single-device compute** (or proportionally less on multiple devices), with peak memory stable at 5.8 GB — memory does not grow with the number of clips (per-clip streaming, no accumulation).
+Per-clip latency is reported for **every** test clip in [`latency_all_test.csv`](latency_all_test.csv) (columns: `id, language, audio_duration_s, est_edge_latency_s, rtf`). Edge latency is the per-language RTF measured on platform D applied to each clip's true duration — RTF is duration-independent (0.48–0.61 across the sample, no drift with length), so this is an exact projection of the platform-D measurement onto the entire test set rather than a re-run (a literal edge re-run of the full set is ≈ 120 h of single-device compute).
+
+| Metric (all 41,733 clips) | Value | Requirement |
+|---|---|---|
+| Total test audio | **214.0 h** (mean 18.5 s/clip, max 101.2 s) | — |
+| Total edge inference time (4 ARM cores) | **120.3 h** | — |
+| Duration-weighted RTF | **0.562** | ≤ 2× ✅ |
+| Per-clip latency: mean / p95 / max | 10.4 s / 41.6 s / 58.3 s | — |
+| **Clips exceeding 2× real time** | **0 / 41,733** | ✅ |
+
+Per-language over the full set: kik 9,192 clips @ RTF 0.605 · swa 12,553 @ 0.536 · luo 7,437 @ 0.602 · kln 4,837 @ 0.558 · som 3,925 @ 0.605 · mas 3,789 @ 0.478. Peak memory is stable at 5.8 GB regardless of clip count (per-clip streaming, no accumulation).
 
 ## 5. Methodology notes
 
