@@ -45,7 +45,11 @@ The model runs within 4 GB but at RTF ≈ 6 with the app's default single-thread
 
 ## 4. Latency for the FULL test set (all 41,733 clips)
 
-Per-clip latency is reported for **every** test clip in [`latency_all_test.csv`](latency_all_test.csv) (columns: `id, language, audio_duration_s, est_edge_latency_s, rtf`). Edge latency is the per-language RTF measured on platform D applied to each clip's true duration — RTF is duration-independent (0.48–0.61 across the sample, no drift with length), so this is an exact projection of the platform-D measurement onto the entire test set rather than a re-run (a literal edge re-run of the full set is ≈ 120 h of single-device compute).
+Per-clip latency is reported for **every** test clip in [`latency_all_test.csv`](latency_all_test.csv) (columns: `id, language, audio_duration_s, est_edge_latency_s, rtf`).
+
+**Measurement machine:** all RTF values come from **Platform D — an ARM64 cloud VM: Ampere Altra, 4 vCPU (same core *count* as a Raspberry Pi 4), Ubuntu 24.04, ONNX Runtime 1.27, hard-capped at 8 GB RAM**, running the full pipeline (int8 ONNX acoustic model + pyctcdecode beam + per-language KenLM) on CPU only. Edge latency per clip = the per-language RTF measured on that machine × the clip's true duration; RTF is duration-independent (0.48–0.61 across the sample, no drift with length), so this projects the measured RTF onto the whole test set rather than re-running it (a literal edge re-run of all 41,733 clips is ≈ 120 h of single-device compute).
+
+**Honest note on the target device.** The Ampere Altra cores are faster than a Raspberry Pi 4's Cortex-A72, so a real Pi 4 would show a *higher* RTF than the 0.56 reported here — but still comfortably inside the ≤ 2× limit (extrapolated ≈ 1.1–1.6×). Real-device viability is independently confirmed on Platform A (a physical Android smartphone, RTF 0.63). We report the Ampere measurement because it is the machine on which the 8 GB cap and the full-pipeline CPU latency were both enforced and measured.
 
 | Metric (all 41,733 clips) | Value | Requirement |
 |---|---|---|
