@@ -76,4 +76,5 @@ This work is released under the **Apache License 2.0** ([`LICENSE`](LICENSE)).
 
 - Base model: [Omnilingual ASR](https://github.com/facebookresearch/omnilingual-asr) (omniASR-CTC-1B v2), Meta Platforms, **Apache-2.0**.
 - Training data: AfriVoices / KenCorpus datasets provided by the organizers (Anv-ke, Digital Umuganda); language-model text from those transcripts plus publicly available web text. No copyrighted corpora are redistributed.
+- Data & model cards for all datasets and the base model: [`DATA_CARDS.md`](DATA_CARDS.md).
 - See [`TRANSPARENCY_NOTE.md`](TRANSPARENCY_NOTE.md) for our handling of a leak in the provided data.
