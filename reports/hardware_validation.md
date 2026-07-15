@@ -61,6 +61,8 @@ Per-clip latency is reported for **every** test clip in [`latency_all_test.csv`]
 
 Per-language over the full set: kik 9,192 clips @ RTF 0.605 · swa 12,553 @ 0.552 · luo 7,437 @ 0.602 · kln 4,837 @ 0.575 · som 3,925 @ 0.605 · mas 3,789 @ 0.478. Peak memory is stable at 5.8 GB regardless of clip count (per-clip streaming, no accumulation).
 
+**Decoding-mode note (edge vs submission accuracy).** The model supports two decoding policies for clips longer than 38 s, with identical model weights and language models: (a) **edge mode** — 38 s chunked decoding, which is what every measurement in this report uses and what bounds peak RAM at 5.8 GB; (b) **accuracy mode** — whole-clip single-pass decoding (used server-side for the final submission's 4,500 long clips; improves long-clip WER, validated in `TECHNICAL_REPORT.md` §5) whose attention memory grows quadratically with clip length and is therefore not recommended within the 8 GB edge envelope for 100 s clips. On-device deployments use edge mode; the compliance figures below are honest for that mode.
+
 **Beam-width note.** The Platform-D measurements were taken at beam 100 for every language. The final submission's decode parameters ([`configs/decode_params.json`](../configs/decode_params.json)) use **beam 200 for Kalenjin and Swahili**. Beam decoding was measured at ~3 % of total runtime at beam 100 and scales linearly with beam width, so the affected per-language RTFs are adjusted upward accordingly (kln 0.558 → 0.575, swa 0.536 → 0.552) in the table above and in `latency_all_test.csv`. Worst-case margin remains > 3× under the 2× real-time limit.
 
 ## 5. Methodology notes
