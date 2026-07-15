@@ -45,16 +45,26 @@ The trained checkpoint, the int8 ONNX export, and the six purified KenLM languag
 
 **➡️ [huggingface.co/Kimyayd/afrivoices-edge-asr](https://huggingface.co/Kimyayd/afrivoices-edge-asr)**
 
-## Reproduce a submission
+## Reproduce the winning submission (0.34778) — three steps
 
 ```bash
 # Environment: Python 3.12, torch 2.8.0, fairseq2 0.6 (matched index),
-# omnilingual-asr 0.1.0, pyctcdecode, kenlm, jiwer
-export FAIRSEQ2_ASSET_DIR=configs   # asset cards for the base model + tokenizer
-CKPT=<step_12750/model/.../sdp_00.pt> \
-MODE=test OUT=submission.csv \
-python3 code/omni_kenlm_v3.py       # reads configs/decode_params.json
+# omnilingual-asr 0.1.0, pyctcdecode, kenlm, jiwer  (install: see TRAINING.md §0)
+export FAIRSEQ2_ASSET_DIR=configs      # asset cards for base model + tokenizer
+export CKPT=<step_12750/model/pp_00/tp_00/sdp_00.pt>   # from Hugging Face
+
+# 1) Base deck: all 41,733 clips, standard 38-s chunked decoding
+MODE=test OUT=deck_base.csv python3 code/omni_kenlm_v3.py
+
+# 2) Long clips: re-decode the 4,500 clips > 38 s in ONE pass (no chunking)
+OUT=deck_long.csv python3 code/omni_kenlm_whole.py
+
+# 3) Guarded splice of (2) into (1)  →  the submitted file
+#    (long-clip ids = rows with audio_duration_s > 38 in reports/latency_all_test.csv)
+python3 code/splice_qc.py deck_base.csv deck_long.csv longids.txt submission.csv
 ```
+
+Both decode steps read the committed [`configs/decode_params.json`](configs/decode_params.json) (per-language KenLM α/β/beam). Step 3 applies per-clip safety guards (aberrant-delta rollback) and byte-preserving output; details and validation evidence in [`TECHNICAL_REPORT.md`](TECHNICAL_REPORT.md) §5 and the ledger in [`SUBMISSIONS.md`](SUBMISSIONS.md).
 
 Training recipe: [`TRAINING.md`](TRAINING.md) + [`configs/runB.yaml`](configs/runB.yaml). Fine-tuned from omniASR-CTC-1B v2, 14,000 steps, LR 1e-5 tri-stage, seed 2026.
 
