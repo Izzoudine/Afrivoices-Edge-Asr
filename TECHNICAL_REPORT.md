@@ -31,6 +31,7 @@ A shared acoustic encoder (fine-tuned Omnilingual-ASR CTC-1B) provides language-
 
 - **Shallow fusion:** pyctcdecode beam search (beam 100) + per-language KenLM (3–5-gram) + word-unigram lexicons. Worth roughly −5 WER points over greedy.
 - **Leak-free tuning.** The α/β mixing weights are swept on a dev whose references are **excluded** from the LM corpus; an early leak (dev references present in the LM) once caused destructive over-correction. Every candidate config is confirmed by a paired bootstrap (10 k resamples) on a held-out dev half before deployment — small dev wins that fail this test are discarded.
+- **Final-day refinement (the deployed parameters).** On the last day we re-swept α/β/beam per language on an enlarged dev (100–150 clips/language, logits cached once so a 30-config grid runs on CPU in ~30 min). Adopted only wins with ≥ 85 % bootstrap and ≥ 0.3 WER margin: kik α .5→.6/β 1.5→1.25, kln α .6→.7/β .5→.75/beam 200, luo α .5→.6, mas α .35→.45/β .8→.55, swh beam 200. Dev macro −0.49 transferred to **−0.10 on the test** (0.34935 → 0.34838, ≈ 20 % transfer rate). A second, finer round (micro-shifts + kln beam 800) that passed only a *lowered* adoption bar **inverted on the test** (+0.18 / +0.06) and was discarded — confirming the bar's purpose: fine-grained dev gains below the noise floor do not transfer.
 
 ## 6. What we tried and rejected (measured, not guessed)
 

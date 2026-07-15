@@ -54,12 +54,14 @@ Per-clip latency is reported for **every** test clip in [`latency_all_test.csv`]
 | Metric (all 41,733 clips) | Value | Requirement |
 |---|---|---|
 | Total test audio | **214.0 h** (mean 18.5 s/clip, max 101.2 s) | — |
-| Total edge inference time (4 ARM cores) | **120.3 h** | — |
-| Duration-weighted RTF | **0.562** | ≤ 2× ✅ |
-| Per-clip latency: mean / p95 / max | 10.4 s / 41.6 s / 58.3 s | — |
+| Total edge inference time (4 ARM cores) | **121.9 h** | — |
+| Duration-weighted RTF | **0.569** | ≤ 2× ✅ |
+| Per-clip latency: mean / p95 / max | 10.5 s / 41.7 s / 58.3 s | — |
 | **Clips exceeding 2× real time** | **0 / 41,733** | ✅ |
 
-Per-language over the full set: kik 9,192 clips @ RTF 0.605 · swa 12,553 @ 0.536 · luo 7,437 @ 0.602 · kln 4,837 @ 0.558 · som 3,925 @ 0.605 · mas 3,789 @ 0.478. Peak memory is stable at 5.8 GB regardless of clip count (per-clip streaming, no accumulation).
+Per-language over the full set: kik 9,192 clips @ RTF 0.605 · swa 12,553 @ 0.552 · luo 7,437 @ 0.602 · kln 4,837 @ 0.575 · som 3,925 @ 0.605 · mas 3,789 @ 0.478. Peak memory is stable at 5.8 GB regardless of clip count (per-clip streaming, no accumulation).
+
+**Beam-width note.** The Platform-D measurements were taken at beam 100 for every language. The final submission's decode parameters ([`configs/decode_params.json`](../configs/decode_params.json)) use **beam 200 for Kalenjin and Swahili**. Beam decoding was measured at ~3 % of total runtime at beam 100 and scales linearly with beam width, so the affected per-language RTFs are adjusted upward accordingly (kln 0.558 → 0.575, swa 0.536 → 0.552) in the table above and in `latency_all_test.csv`. Worst-case margin remains > 3× under the 2× real-time limit.
 
 ## 5. Methodology notes
 

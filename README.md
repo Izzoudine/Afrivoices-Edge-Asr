@@ -2,8 +2,8 @@
 
 A single, unified, edge-deployable Automatic Speech Recognition (ASR) model for **Swahili, Kikuyu (Gĩkũyũ), Dholuo (Luo), Somali, Maasai, and Kalenjin**, built for the AfriVoices Multilingual Edge ASR Track (Maseno Center for AI × Digital Umuganda / KenCorpus Consortium).
 
-> **Leaderboard result:** macro-WER **0.34935** — 1st place.
-> One model, six languages, running at **0.58× real time on 4 ARM cores (Raspberry-Pi-class) with 5.8 GB peak RAM**.
+> **Leaderboard result:** macro-WER **0.34838** (public leaderboard, final day).
+> One model, six languages, running at **≈0.57× real time on 4 ARM cores (Raspberry-Pi-class) with 5.8 GB peak RAM**.
 
 ---
 
@@ -23,7 +23,7 @@ A single, unified, edge-deployable Automatic Speech Recognition (ASR) model for 
 | Somali | Cushitic | ~55 |
 | Maasai | Nilotic (E) | ~45 |
 | Kalenjin | Nilotic (S) | ~46 |
-| **Macro-WER** | — | **0.34935** |
+| **Macro-WER** | — | **0.34838** |
 
 (Per-language figures are decode-side estimates; the official metric is the unweighted mean.)
 
