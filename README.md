@@ -5,6 +5,8 @@ A single, unified, edge-deployable Automatic Speech Recognition (ASR) model for 
 > **Leaderboard result:** macro-WER **0.34778** — 1st place on the public leaderboard at close.
 > One model, six languages, running at **≈0.57× real time on 4 ARM cores (Raspberry-Pi-class) with 5.8 GB peak RAM**.
 
+📄 **Solution write-up:** [`WRITEUP.md`](WRITEUP.md) — the full method, the two data bugs that won it, and the measurement discipline behind them.
+
 ---
 
 ## What this is
