@@ -25,8 +25,11 @@ Inference/decoding additionally needs the packages above; the edge runtime needs
 ## 2. Data
 
 - ~1,035 h of deduplicated 6-language speech, stored as FLAC-in-Parquet (16 kHz mono), assembled with per-language sampling weights ([`configs/summary_v2.tsv`](configs/summary_v2.tsv)): kln 25 / mas 22 / som 16 / luo 18 / kik 11 / swh 4 — biased toward the hardest languages because the metric is an unweighted mean.
-- Extraction & demojibake repair: [`code/prep_shard.py`](code/prep_shard.py) (repairs the double-encoded Kikuyu/Somali text **before** normalization).
-- See [`TECHNICAL_REPORT.md`](TECHNICAL_REPORT.md) for the full data pipeline and the deduplication / leak findings.
+- Extraction, encoding repair, normalization and dedup are all in one script, [`code/prep_shard.py`](code/prep_shard.py):
+  - `demojibake()` repairs the double-encoded Kikuyu/Somali text (cp1252→UTF-8 round-trip + a fallback pair map) **before** normalization;
+  - `norm()` lowercases, strips punctuation / `[cs]`-`[p]` tags / digits and collapses whitespace — the **same** normalization at train and eval time (a mismatch here collapses fine-tuning to ~100 % WER);
+  - rows are deduplicated by `(language, normalized text, audio length)`; audio is resampled to 16 kHz (`soxr_hq`) and stored as FLAC-in-Parquet.
+- Leak handling: [`code/purify.py`](code/purify.py) removes the `dev_test` transcriptions (which overlap the Kaggle test set) from the LM corpora, and clean language models are rebuilt with [`code/build_pure_lms.sh`](code/build_pure_lms.sh). See [`TRANSPARENCY_NOTE.md`](TRANSPARENCY_NOTE.md) and [`TECHNICAL_REPORT.md`](TECHNICAL_REPORT.md) for the full findings.
 
 ## 3. Recipe
 

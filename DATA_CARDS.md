@@ -19,6 +19,7 @@ All acoustic training data and in-domain language-model text come from the AfriV
 Notes:
 - Only the `train` and `dev` splits were used for model training and validation. See [`TRANSPARENCY_NOTE.md`](TRANSPARENCY_NOTE.md) regarding the `dev_test` split (which overlaps the Kaggle test set) and our removal of its transcriptions from the language-model corpora.
 - Additional **public web text** was used only to enlarge the KenLM language models (not for acoustic training). No copyrighted corpora are redistributed in this repository; the deliverable language models are built from competition transcripts + freely available text.
+- **Data preparation** (extraction, encoding repair, normalization, deduplication, 16 kHz FLAC-in-Parquet) is a single reproducible script, [`code/prep_shard.py`](code/prep_shard.py). Rows are deduplicated by `(language, normalized text, audio length)`; where the same recording appeared under two channels (e.g. the Hugging Face `Anv-ke/*` sets are the Drive corpus re-badged), the duplicate is dropped so no clip is counted twice. The assembled acoustic corpus is ~1,035 h after dedup.
 
 ## Pre-trained model (external, cited)
 
