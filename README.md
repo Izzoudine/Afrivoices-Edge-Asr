@@ -6,6 +6,7 @@ A single, unified, edge-deployable Automatic Speech Recognition (ASR) model for 
 > One model, six languages, running at **≈0.57× real time on 4 ARM cores (Raspberry-Pi-class) with 5.8 GB peak RAM**.
 
 📄 **Solution write-up:** [`WRITEUP.md`](WRITEUP.md) — the full method, the two data bugs that won it, and the measurement discipline behind them.
+📝 **Blog post (the story):** [From 68% to First Place — an honest account of winning AfriVoices](https://medium.com/@izzoudeenkanta/from-68-to-first-place-an-honest-account-of-winning-afrivoices-8a64b0361243)
 
 ---
 
