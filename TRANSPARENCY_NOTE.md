@@ -1,4 +1,8 @@
-# Transparency Note — Test-Set Leak in the Provided Data
+# Transparency Note
+
+Two disclosures: a **test-set leak** we found and removed during the competition (below), and a **post-competition addendum** on residual text corruption in Dholuo (end of this file).
+
+# 1. Test-Set Leak in the Provided Data
 
 We are disclosing this proactively because we believe it affects the competition fairly and want our submission to be verifiable and above reproach.
 
@@ -32,3 +36,18 @@ The contamination was worth almost nothing:
 ## What we submit
 
 Only the **purified** pipeline (submission `0.34935`) and the clean language models in this repository. We flag this so the organizers can apply a uniform rule to all teams — the leak is in the provided data and likely affects every team that built in-domain language models, whether or not they were aware of it.
+
+---
+
+# 2. Post-competition addendum — residual mojibake in Dholuo (added 2026-07-22)
+
+Our double-UTF-8 (mojibake) repair (`demojibake()` in [`code/prep_shard.py`](code/prep_shard.py)) was applied to the **Kikuyu and Somali** partitions — the two languages where we detected and measured the corruption during the competition.
+
+After the close, two other participants' write-ups independently reported that the same upstream corruption also affects **Dholuo (Luo)**:
+
+- the 10th-place solution (Victor Olufemi) reports mojibake in Kikuyu, **Luo** and Somali source text;
+- the 4th-place solution reports the corruption silently destroying the **Dholuo apostrophe** (the `ng'` family) in **~9 % of lines**.
+
+We did not audit Dholuo for this pattern during the competition, so **our Dholuo training and language-model text may retain residual corruption**. We have not measured its impact on our Dholuo WER (~28 %); by analogy with the repaired languages the effect is plausibly non-zero but far smaller than the Kikuyu case (~15 WER points), since the affected character is a single apostrophe rather than core vowels.
+
+We disclose this for completeness, and so that future users of this pipeline or of the source datasets apply the encoding repair (e.g. `ftfy.fix_text`, or our `demojibake()`) to **all** languages before normalization — not only to the languages where corruption is first noticed. Credit to both authors for surfacing it.
